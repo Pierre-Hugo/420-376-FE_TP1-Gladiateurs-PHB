@@ -14,16 +14,17 @@ public class JeuGladiateurs {
     // <editor-fold defaultstate="collapsed" desc="Instanciation des objets">
     CompteurDeTour tour = new CompteurDeTour();
     AffichageEcran affichage = new AffichageEcran();
-    Personnage personnage1 = new Personnage();
-    Personnage personnage2 = new Personnage();
+    Personnage personnage1 = new Personnage("Bob le malchanceux", 15, 15, 70, 15);
+    Personnage personnage2 = new Personnage("Igor l'empaleur", 25, 5, 100, 30);
     // </editor-fold>
 
     // **************************************************************************
     // **************************************************************************
     // **************************************************************************
     // <editor-fold defaultstate="collapsed" desc="Affichage pré-combat">
-    // TODO : Afficher les infos de chaque personnage
-    // TODO : Afficher le message du début du combat
+    personnage1.afficherInfosPersonnage();
+    personnage2.afficherInfosPersonnage();
+    affichage.afficherDebutCombat();
     // </editor-fold>
 
     // **************************************************************************
