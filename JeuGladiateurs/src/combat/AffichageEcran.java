@@ -9,7 +9,10 @@ public class AffichageEcran {
     // **************************************************************************
     // <editor-fold defaultstate="collapsed" desc="Méthodes d'affichage">
     public void afficherDebutCombat() {
-        // TODO : Afficher le message du début du combat, tel que montré dans l'énoncé
+        System.out.println("");
+        System.out.println("<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>");
+        System.out.println(">>>>> Que le combat commence ! <<<<<");
+        System.out.println("<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>");
     }
     
     public void afficherSeparateurDeTour() {
