@@ -7,13 +7,12 @@ public class Personnage {
     // **************************************************************************
     // **************************************************************************
     // **************************************************************************
-    public String nom;
-    public int  pointsDeVie;
-    public int valeurMaxAttaque;
-    public int valeurDefense;
-    public int initiative;
-    public int valeurDeFrappe;
-    public int Dommages;
+    protected String nom;
+    protected int  pointsDeVie;
+    protected int valeurMaxAttaque;
+    protected int valeurDefense;
+    protected int initiative;
+    protected int valeurDeFrappe;
     
 
     // **************************************************************************
@@ -26,7 +25,6 @@ public class Personnage {
         this.valeurMaxAttaque = attaqueMax;
         this.valeurDefense = defense;
         this.initiative = ini;
-        
     }
 
     public Personnage() {
@@ -36,12 +34,12 @@ public class Personnage {
         this.valeurDefense = 0;
         this.initiative = 0;
         this.valeurDeFrappe = 0;
-        this.Dommages = 0;
     }
+    
     // </editor-fold>
+    
     public String getNom() {
         return nom;
-        // TODO : Afficher les infos du personnage, tel que montré dans l'énoncé
     }
 
     public int getPointsDeVie() {
@@ -60,14 +58,15 @@ public class Personnage {
         return valeurDeFrappe;
     }
 
+    public int getInitiative() {    
+        return initiative;
+    }
+
     
     // **************************************************************************
     // **************************************************************************
     // **************************************************************************
     // <editor-fold defaultstate="collapsed" desc="Getters et setters">
-    public int getInitiative() {    
-        return initiative;
-    }
 
     public void setNom(String nom) {
         this.nom = nom;
@@ -121,7 +120,7 @@ public class Personnage {
 
     public void frapperPersonnage(Personnage personnageCible) {
         valeurDeFrappe = attaqueCalcul();
-        Dommages = valeurDeFrappe - personnageCible.getValeurDefense();
+        int Dommages = valeurDeFrappe - personnageCible.getValeurDefense();
         Dommages = Dommages >= 0 ? Dommages : 0;
         personnageCible.setPointsDeVie(personnageCible.getPointsDeVie()- Dommages);
         if (personnageCible.getPointsDeVie() <= 0) {
@@ -131,6 +130,7 @@ public class Personnage {
         System.out.println(nom + " attaque avec avec une puissance de " + valeurDeFrappe);
         System.out.println(personnageCible.getNom() + " a une defense de " + personnageCible.getValeurDefense());
         System.out.println("Les dommages sont donc de " + Dommages);
+        System.out.println("");
     }
 
     public void setNewInitiativeRandom() {

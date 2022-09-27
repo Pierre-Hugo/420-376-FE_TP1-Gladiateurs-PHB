@@ -1,8 +1,10 @@
 package jeugladiateurs;
 
-import personnages.Personnage;
+//import personnages.Personnage;
 import combat.CompteurDeTour;
 import combat.AffichageEcran;
+import personnages.Mirmillon;
+import personnages.Retiaire;
 
 public class JeuGladiateurs {
 
@@ -14,8 +16,8 @@ public class JeuGladiateurs {
     // <editor-fold defaultstate="collapsed" desc="Instanciation des objets">
     CompteurDeTour tour = new CompteurDeTour();
     AffichageEcran affichage = new AffichageEcran();
-    Personnage personnage1 = new Personnage("Bob le malchanceux", 15, 15, 70, 15);
-    Personnage personnage2 = new Personnage("Igor l'empaleur", 25, 5, 100, 30);
+    Mirmillon personnage1 = new Mirmillon("Bob le malchanceux", 15, 15, 70, 15);
+    Retiaire personnage2 = new Retiaire("Igor l'empaleur", 25, 5, 100, 30);
     // </editor-fold>
 
     // **************************************************************************
@@ -33,10 +35,10 @@ public class JeuGladiateurs {
         do {
             tour.afficheTour();
             for (int i = 0; i < 100; i++) {
-                if (personnage1.getInitiative() == i) {
+                if (personnage1.getInitiative() == i && personnage1.getPointsDeVie() > 0) {
                     personnage1.frapperPersonnage(personnage2);
                 }
-                if (personnage2.getInitiative() == i) {
+                if (personnage2.getInitiative() == i && personnage2.getPointsDeVie() > 0) {
                     personnage2.frapperPersonnage(personnage1);
                 }
             }
