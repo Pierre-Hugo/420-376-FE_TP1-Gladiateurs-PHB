@@ -48,6 +48,7 @@ public class JeuGladiateurs {
             tour.augmenteTour();
             affichage.afficherSeparateurDeTour();
         } while (personnage1.getPointsDeVie() > 0 && personnage2.getPointsDeVie() > 0);
+        affichage.afficheVictoire(personnage1, personnage2);
     // </editor-fold>
     }
 
