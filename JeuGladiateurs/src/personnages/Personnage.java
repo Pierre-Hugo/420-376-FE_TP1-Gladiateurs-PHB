@@ -1,5 +1,7 @@
 package personnages;
 
+import java.util.Random;
+
 public class Personnage {
 
     // **************************************************************************
@@ -10,6 +12,8 @@ public class Personnage {
     public int valeurMaxAttaque;
     public int valeurDefense;
     public int initiative;
+    public int valeurDeFrappe;
+    public int Dommages;
     
 
     // **************************************************************************
@@ -22,6 +26,7 @@ public class Personnage {
         this.valeurMaxAttaque = attaqueMax;
         this.valeurDefense = defense;
         this.initiative = ini;
+        
     }
 
     public Personnage() {
@@ -30,6 +35,8 @@ public class Personnage {
         this.valeurMaxAttaque = 0;
         this.valeurDefense = 0;
         this.initiative = 0;
+        this.valeurDeFrappe = 0;
+        this.Dommages = 0;
     }
     // </editor-fold>
     public String getNom() {
@@ -49,6 +56,11 @@ public class Personnage {
         return valeurDefense;
     }
 
+    public int getValeurDeFrappe() {
+        return valeurDeFrappe;
+    }
+
+    
     // **************************************************************************
     // **************************************************************************
     // **************************************************************************
@@ -77,6 +89,10 @@ public class Personnage {
         this.initiative = initiative;
     }
 
+    public void setValeurDeFrappe(int valeurDeFrappe) {
+        this.valeurDeFrappe = valeurDeFrappe;
+    }
+
     
     // </editor-fold>
     // **************************************************************************
@@ -84,19 +100,37 @@ public class Personnage {
     // **************************************************************************
     // <editor-fold defaultstate="collapsed" desc="Mécanique de jeu">
     public void afficherInfosPersonnage() {
-        // TODO : Afficher les infos du personnage, tel que montré dans l'énoncé
+        System.out.println("");
+        System.out.println("Nom : " + nom);
+        System.out.println("Attaque : " + valeurMaxAttaque);
+        System.out.println("Defense : " + valeurDefense);
+        System.out.println("Point de vie : " + pointsDeVie);
+        System.out.println("Initiative : " + initiative);
+        System.out.print("Statut : ");
+        if (pointsDeVie>0) System.out.println("Vivant");
+        else System.out.println("Mort");
     }
 
     private int attaqueCalcul() {
-        // TODO : Retourner la valeur de l'attaque du personnage.
-        // Cette valeur est trouvée aléatoirement et doit se situer entre ZÉRO et valeurMaxAttaque.
-        return 0;
+        Random rand = new Random();
+        int minValue = 0;
+        int maxValue = valeurMaxAttaque;   
+        int nombreAleatoire = rand.nextInt(maxValue - minValue) + minValue;
+        return nombreAleatoire;
     }
 
     public void frapperPersonnage(Personnage personnageCible) {
-        // TODO : Récupérer la valeur d'attaque pour ce tour, calculer les dégats,
-        //modifier les points de vie du personnage cible, afficher les détails
-        // sur l'attaque, tel que montré dans l'énoncé.
+        valeurDeFrappe = attaqueCalcul();
+        Dommages = valeurDeFrappe - personnageCible.getValeurDefense();
+        Dommages = Dommages >= 0 ? Dommages : 0;
+        personnageCible.setPointsDeVie(personnageCible.getPointsDeVie()- Dommages);
+        if (personnageCible.getPointsDeVie() <= 0) {
+            personnageCible.setPointsDeVie(0);
+        }
+        System.out.println("");
+        System.out.println(nom + " attaque avec avec une puissance de " + valeurDeFrappe);
+        System.out.println(personnageCible.getNom() + " a une defense de " + personnageCible.getValeurDefense());
+        System.out.println("Les dommages sont donc de " + Dommages);
     }
 
     public void setNewInitiativeRandom() {
